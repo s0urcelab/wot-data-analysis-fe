@@ -2,7 +2,7 @@
 import { defineConfig } from 'umi';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
-const { REACT_APP_ENV } = process.env;
+const { REACT_APP_ENV, API_PREFIX } = process.env;
 export default defineConfig({
   hash: true,
   antd: {
@@ -63,4 +63,7 @@ export default defineConfig({
   mfsu: {},
   webpack5: {},
   exportStatic: {},
+  define: {
+    API_PREFIX: API_PREFIX || '',
+  },
 });

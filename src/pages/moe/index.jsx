@@ -6,13 +6,16 @@ import { GridContent } from '@ant-design/pro-layout';
 import { Progress } from '@ant-design/charts';
 import ProTable from '@ant-design/pro-table';
 import { request, useRequest } from 'umi';
+import API from '@/api'
 import PageLoading from './components/PageLoading';
 import { ChartCard, Field } from './components/Charts';
 import TANK_TYPE from './type_svg'
 import './style.less';
 
 const getFlag = nation => `//static-cdn.wotgame.cn/static/5.100.1_cae685/wotp_static/img/core/frontend/scss/common/components/icons/img/filter-${nation}.png`
-const getIcon = name => `//static-cdn.wotgame.cn/dcont/tankopedia_images/${name.toLowerCase()}/${name.toLowerCase()}_icon.svg`
+// const getIcon = name => `//static-cdn.wotgame.cn/dcont/tankopedia_images/${name.toLowerCase()}/${name.toLowerCase()}_icon.svg`
+const getIcon = name => `//sg-wotp.wgcdn.co/dcont/tankopedia_images/${name.toLowerCase()}/${name.toLowerCase()}_icon.svg`
+
 
 function Analysis() {
   const [searchParams, setSearch] = useState({})
@@ -24,7 +27,7 @@ function Analysis() {
   const fetchTanks = async (params, sort) => {
     const isSort = !!Object.keys(sort).length
 
-    const { errCode, data } = await request('//home.src.moe:8000/wot/tankList', {
+    const { errCode, data } = await request(API('/tankList'), {
       method: 'GET',
       params: {
         page: params.current,
@@ -58,7 +61,7 @@ function Analysis() {
       tiers: [],
       types: [],
     },
-  } = useRequest('//home.src.moe:8000/wot/preData');
+  } = useRequest(API('/preData'));
 
   const columns = [
     {

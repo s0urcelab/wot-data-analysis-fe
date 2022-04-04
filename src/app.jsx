@@ -18,9 +18,6 @@ export const layout = ({ initialState }) => {
   return {
     rightContentRender: () => <RightContent />,
     disableContentMargin: false,
-    waterMarkProps: {
-      content: initialState?.currentUser?.name,
-    },
     footerRender: () => <Footer />,
     menuHeaderRender: undefined,
     // 自定义 403 页面
