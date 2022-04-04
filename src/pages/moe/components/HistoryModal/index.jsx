@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Spin, Modal } from 'antd';
 import { useRequest, request } from 'umi';
 import moment from 'moment';
-import { Area } from '@ant-design/charts';
+import { Area } from '@ant-design/plots';
 import API from '@/api'
 
 export default function HistoryModal(props) {
@@ -38,8 +38,8 @@ export default function HistoryModal(props) {
     seriesField: 'type',
     color: ['#47d747', '#66aaff', '#cc44ff'],
     slider: {
-      start: 0.1,
-      end: 0.9,
+      start: 0,
+      end: 1,
     },
   }
 

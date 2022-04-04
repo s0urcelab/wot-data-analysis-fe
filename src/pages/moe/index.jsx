@@ -3,7 +3,7 @@ import moment from 'moment';
 import Icon, { UndoOutlined } from '@ant-design/icons';
 import { Tooltip, Image, Space, Button, Col, Card, Radio, Row } from 'antd';
 import { GridContent } from '@ant-design/pro-layout';
-import { Progress } from '@ant-design/charts';
+import { Progress } from '@ant-design/plots';
 import ProTable from '@ant-design/pro-table';
 import { request, useRequest } from 'umi';
 import API from '@/api'
