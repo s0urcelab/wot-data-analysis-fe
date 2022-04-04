@@ -1,7 +1,7 @@
 import { Suspense, useState } from 'react';
 import moment from 'moment';
-import Icon from '@ant-design/icons';
-import { Col, Card, Radio, Row } from 'antd';
+import Icon, { UndoOutlined } from '@ant-design/icons';
+import { Tooltip, Image, Space, Button, Col, Card, Radio, Row } from 'antd';
 import { GridContent } from '@ant-design/pro-layout';
 import { Progress } from '@ant-design/charts';
 import ProTable from '@ant-design/pro-table';
@@ -9,6 +9,7 @@ import { request, useRequest } from 'umi';
 import API from '@/api'
 import PageLoading from './components/PageLoading';
 import { ChartCard, Field } from './components/Charts';
+import HistoryModal from './components/HistoryModal';
 import TANK_TYPE from './type_svg'
 import './style.less';
 
@@ -16,9 +17,34 @@ const getFlag = nation => `//static-cdn.wotgame.cn/static/5.100.1_cae685/wotp_st
 // const getIcon = name => `//static-cdn.wotgame.cn/dcont/tankopedia_images/${name.toLowerCase()}/${name.toLowerCase()}_icon.svg`
 const getIcon = name => `//sg-wotp.wgcdn.co/dcont/tankopedia_images/${name.toLowerCase()}/${name.toLowerCase()}_icon.svg`
 
+const NATION_CN = {
+  'china': '中国',
+  'czech': '捷克',
+  'france': '法国',
+  'germany': '德国',
+  'italy': '意大利',
+  'japan': '日本',
+  'poland': '波兰',
+  'sweden': '瑞典',
+  'uk': '英国',
+  'usa': '美国',
+  'ussr': '苏联',
+}
 
 function Analysis() {
   const [searchParams, setSearch] = useState({})
+  const [page, setPage] = useState(1)
+  const [size, setSize] = useState(20)
+  const [isModalVisible, setVisible] = useState(false)
+  const [selectedRecord, setRecord] = useState({
+    _id: -1,
+    name: '-',
+  })
+
+  const openModal = (record) => {
+    setVisible(true)
+    setRecord(record)
+  }
 
   const updateSearch = (key, val) => {
     setSearch(p => ({ ...p, [key]: val }))
@@ -65,9 +91,21 @@ function Analysis() {
 
   const columns = [
     {
+      title: '排名',
+      dataIndex: 'seq',
+      render: (_, __, idx) => (page - 1) * size + (idx + 1),
+    },
+    {
       title: '国别',
       dataIndex: 'nation',
-      render: nation => <img className='tank-nation' src={getFlag(nation)} alt="" />,
+      render: nation => (
+        <img
+          className='tank-nation'
+          src={getFlag(nation)}
+          title={NATION_CN[nation]}
+          alt=""
+        />
+      ),
     },
     {
       title: '类型',
@@ -77,33 +115,48 @@ function Analysis() {
     {
       title: '等级',
       dataIndex: 'tier',
-      render: (tier, { premium }) => <span className={`tank-tier ${premium ? 'premium' : ''}`}>{String.fromCodePoint(tier + 8543)}</span>,
+      render: (tier, { premium }) => (
+        <span className={`tank-tier ${premium ? 'premium' : ''}`}>{String.fromCodePoint(tier + 8543)}</span>
+      ),
       className: 'font-consolas',
     },
     {
       title: '坦克名称',
       dataIndex: 'name',
-      render: (name, { tech_name, premium }) => (
-        <div style={{ cursor: "pointer" }}>
-          <img className='tank-icon' src={getIcon(tech_name)} alt="" />
-          <span className={`tank-name ${premium ? 'premium' : ''}`}>{name}</span>
-        </div>
-      ),
+      render: (name, record) => {
+        const { tech_name, premium } = record
+        return (
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={() => openModal(record)}
+          >
+            <Tooltip title="点击查看历史数据">
+              <Image
+                width={60}
+                src={getIcon(tech_name)}
+                fallback="//static-cdn.wotgame.cn/static/5.100.1_cae685/wotp_static/img/tankopedia_new/frontend/scss/tankopedia-detail/img/tanks/default_heavy_icon.svg"
+                preview={false}
+              />
+              <span className={`tank-name ${premium ? 'premium' : ''}`}>{name}</span>
+            </Tooltip>
+          </div>
+        )
+      },
     },
     {
-      title: '一环（65%）',
+      title: '一环 (65%)',
       dataIndex: 'mastery_65',
       sorter: true,
       className: 'font-consolas',
     },
     {
-      title: '二环（85%）',
+      title: '二环 (85%)',
       dataIndex: 'mastery_85',
       sorter: true,
       className: 'font-consolas',
     },
     {
-      title: '三环（95%）',
+      title: '三环 (95%)',
       dataIndex: 'mastery_95',
       sorter: true,
       className: 'font-consolas',
@@ -113,12 +166,12 @@ function Analysis() {
   return (
     <GridContent>
       <Suspense fallback={<PageLoading />}>
-        <Row gutter={24}>
+        <Row gutter={24} justify="space-between" >
           <Col style={{ marginBottom: 24 }}>
             <ChartCard
               bordered={false}
               loading={loading}
-              title="击杀环 / 全部坦克"
+              title={<span style={{ fontWeight: 'bold' }}>已收录 / 击杀环坦克</span>}
               total={`${data.hasMastery} / ${data.total}`}
               footer={(
                 <Field label="最后更新日期" value={moment(data.lastUpdate).format('YYYY-MM-DD HH:mm:ss')} />
@@ -134,87 +187,110 @@ function Analysis() {
               />
             </ChartCard>
           </Col>
+          <Col>
+            <img src="/kv5.png" alt="" style={{ maxHeight: '180px' }} />
+          </Col>
         </Row>
       </Suspense>
 
       <ProTable
         tableExtraRender={() => (
           <Card>
-            <Row style={{ marginBottom: '10px' }}>
-              {/* 国别 */}
-              <Radio.Group
-                defaultValue=""
-                buttonStyle="solid"
-                onChange={e => updateSearch('nation', e.target.value)}
-              >
-                <Radio.Button value="" >ALL</Radio.Button>
-                {
-                  data.nations.map(item => (
-                    <Radio.Button key={item} value={item}>
-                      <img src={getFlag(item)} alt="" height={18} />
-                    </Radio.Button>
-                  ))
-                }
-              </Radio.Group>
-            </Row>
+            <Space direction="vertical">
+              <Row>
+                {/* 国别 */}
+                <Radio.Group
+                  value={searchParams.nation || ''}
+                  buttonStyle="solid"
+                  onChange={e => updateSearch('nation', e.target.value)}
+                >
+                  <Radio.Button value="" >ALL</Radio.Button>
+                  {
+                    data.nations.map(item => (
+                      <Radio.Button
+                        key={item}
+                        value={item}
+                      >
+                        <img
+                          src={getFlag(item)}
+                          title={NATION_CN[item]}
+                          height={18}
+                        />
+                      </Radio.Button>
+                    ))
+                  }
+                </Radio.Group>
+              </Row>
 
-            <Row style={{ marginBottom: '10px' }}>
-              {/* 类型 */}
-              <Radio.Group
-                defaultValue=""
-                buttonStyle="solid"
-                onChange={e => updateSearch('type', e.target.value)}
-                style={{ marginRight: '20px' }}
-              >
-                <Radio.Button value="" >ALL</Radio.Button>
-                {
-                  data.types.map(item => (
-                    <Radio.Button key={item} value={item}>
-                      <Icon component={TANK_TYPE[item]} style={{ verticalAlign: 'middle' }} />
-                    </Radio.Button>
-                  ))
-                }
-              </Radio.Group>
+              <Row>
+                <Space>
+                  {/* 类型 */}
+                  <Radio.Group
+                    value={searchParams.type || ''}
+                    buttonStyle="solid"
+                    onChange={e => updateSearch('type', e.target.value)}
+                  >
+                    <Radio.Button value="" >ALL</Radio.Button>
+                    {
+                      data.types.map(item => (
+                        <Radio.Button key={item} value={item}>
+                          <Icon component={TANK_TYPE[item]} style={{ verticalAlign: 'middle' }} />
+                        </Radio.Button>
+                      ))
+                    }
+                  </Radio.Group>
 
-              {/* 等级 */}
-              <Radio.Group
-                defaultValue=""
-                buttonStyle="solid"
-                onChange={e => updateSearch('tier', e.target.value)}
-              >
-                <Radio.Button value="" >ALL</Radio.Button>
-                {
-                  data.tiers.map(item => (
-                    <Radio.Button key={item} value={item}>
-                      {String.fromCodePoint(item + 8543)}
-                    </Radio.Button>
-                  ))
-                }
-              </Radio.Group>
-            </Row>
+                  {/* 等级 */}
+                  <Radio.Group
+                    value={searchParams.tier || ''}
+                    buttonStyle="solid"
+                    onChange={e => updateSearch('tier', e.target.value)}
+                  >
+                    <Radio.Button value="" >ALL</Radio.Button>
+                    {
+                      data.tiers.map(item => (
+                        <Radio.Button key={item} value={item}>
+                          {String.fromCodePoint(item + 8543)}
+                        </Radio.Button>
+                      ))
+                    }
+                  </Radio.Group>
+                </Space>
+              </Row>
 
-            <Row>
-              <Radio.Group
-                defaultValue=""
-                buttonStyle="solid"
-                onChange={e => updateSearch('premium', e.target.value)}
-                style={{ marginRight: '20px' }}
-              >
-                <Radio.Button value="" >ALL</Radio.Button>
-                <Radio.Button value="1" >金币/特种</Radio.Button>
-                <Radio.Button value="0" >普通</Radio.Button>
-              </Radio.Group>
+              <Row>
+                <Space>
+                  <Radio.Group
+                    value={searchParams.premium || ''}
+                    buttonStyle="solid"
+                    onChange={e => updateSearch('premium', e.target.value)}
+                  >
+                    <Radio.Button value="" >ALL</Radio.Button>
+                    <Radio.Button value="1" >金币/特种</Radio.Button>
+                    <Radio.Button value="0" >普通</Radio.Button>
+                  </Radio.Group>
 
-              <Radio.Group
-                defaultValue=""
-                buttonStyle="solid"
-                onChange={e => updateSearch('collector_vehicle', e.target.value)}
-              >
-                <Radio.Button value="" >ALL</Radio.Button>
-                <Radio.Button value="1" >收藏</Radio.Button>
-                <Radio.Button value="0" >普通</Radio.Button>
-              </Radio.Group>
-            </Row>
+                  <Radio.Group
+                    value={searchParams.collector_vehicle || ''}
+                    buttonStyle="solid"
+                    onChange={e => updateSearch('collector_vehicle', e.target.value)}
+                  >
+                    <Radio.Button value="" >ALL</Radio.Button>
+                    <Radio.Button value="1" >收藏</Radio.Button>
+                    <Radio.Button value="0" >普通</Radio.Button>
+                  </Radio.Group>
+
+                  <Button
+                    type="primary"
+                    shape="round"
+                    icon={<UndoOutlined />}
+                    onClick={() => setSearch({})}
+                  >
+                    重置筛选
+                  </Button>
+                </Space>
+              </Row>
+            </Space>
           </Card>
         )}
         tableStyle={{ margin: '0 16px' }}
@@ -225,8 +301,18 @@ function Analysis() {
         request={fetchTanks}
         columns={columns}
         pagination={{
+          onChange: (page, size) => {
+            setPage(page)
+            setSize(size)
+          },
           pageSizeOptions: [10, 20, 40],
         }}
+      />
+
+      <HistoryModal
+        item={selectedRecord}
+        visible={isModalVisible}
+        onClose={() => setVisible(false)}
       />
     </GridContent>
   );

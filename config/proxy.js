@@ -10,7 +10,7 @@ export default {
   // /api
   dev: {
     '/api/': {
-      target: 'https://home.src.moe:8000/wot/',
+      target: 'http://localhost:7001/',
       changeOrigin: true,
       pathRewrite: {
         '^/api': '',
