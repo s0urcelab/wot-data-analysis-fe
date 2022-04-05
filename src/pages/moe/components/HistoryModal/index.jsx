@@ -26,17 +26,21 @@ export default function HistoryModal(props) {
   const { list = [] } = data
   const processData = list.reduce((acc, curr) => [
     ...acc,
-    { type: '一环 (65%)', date: moment(curr.date).format('YYYY-MM-DD'), value: curr.mastery_65 },
-    { type: '二环 (85%)', date: moment(curr.date).format('YYYY-MM-DD'), value: curr.mastery_85 },
-    { type: '三环 (95%)', date: moment(curr.date).format('YYYY-MM-DD'), value: curr.mastery_95 },
+    { type: '三环 (95%)', date: moment(curr.date).format('YYYY-MM-DD'), value: curr.mastery_95, delta: curr.mastery_95 - curr.mastery_85 },
+    { type: '二环 (85%)', date: moment(curr.date).format('YYYY-MM-DD'), value: curr.mastery_85, delta: curr.mastery_85 - curr.mastery_65 },
+    { type: '一环 (65%)', date: moment(curr.date).format('YYYY-MM-DD'), value: curr.mastery_65, delta: curr.mastery_65 },
   ], [])
 
   const config = {
     data: processData,
     xField: 'date',
-    yField: 'value',
+    yField: 'delta',
     seriesField: 'type',
-    color: ['#47d747', '#66aaff', '#cc44ff'],
+    tooltip: {
+      fields: ['type', 'value'],
+      formatter: (datum) => ({ name: datum.type, value: datum.value }),
+    },
+    color: ['#cc44ff', '#66aaff', '#47d747'],
     slider: {
       start: 0,
       end: 1,

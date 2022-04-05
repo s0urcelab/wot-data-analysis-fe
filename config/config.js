@@ -35,6 +35,12 @@ export default defineConfig({
       component: './moe',
     },
     {
+      path: '/changelogs',
+      name: 'changelogs',
+      hideInMenu: true,
+      component: './changelogs',
+    },
+    {
       path: '/',
       redirect: '/marks-of-excellence',
     },

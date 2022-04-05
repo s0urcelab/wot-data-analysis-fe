@@ -179,7 +179,7 @@ function Analysis() {
               contentHeight={46}
             >
               <Progress
-                height={46}
+                height={24}
                 percent={data.hasMastery / data.total}
                 forceFit
                 size={8}
