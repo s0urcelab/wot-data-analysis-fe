@@ -11,12 +11,13 @@ import PageLoading from './components/PageLoading';
 import { ChartCard, Field } from './components/Charts';
 import HistoryModal from './components/HistoryModal';
 import TANK_TYPE from './type_svg'
-import './style.less';
+import './index.less';
 
 const getFlag = nation => `//static-cdn.wotgame.cn/static/5.100.1_cae685/wotp_static/img/core/frontend/scss/common/components/icons/img/filter-${nation}.png`
 // const getIcon = name => `//static-cdn.wotgame.cn/dcont/tankopedia_images/${name.toLowerCase()}/${name.toLowerCase()}_icon.svg`
 const getIcon = name => `//sg-wotp.wgcdn.co/dcont/tankopedia_images/${name.toLowerCase()}/${name.toLowerCase()}_icon.svg`
 
+const DEFAULT_ICON = '//static-cdn.wotgame.cn/static/5.100.1_cae685/wotp_static/img/tankopedia_new/frontend/scss/tankopedia-detail/img/tanks/default_heavy_icon.svg'
 const NATION_CN = {
   'china': '中国',
   'czech': '捷克',
@@ -39,6 +40,7 @@ function Analysis() {
   const [selectedRecord, setRecord] = useState({
     _id: -1,
     name: '-',
+    tech_name: '',
   })
 
   const openModal = (record) => {
@@ -134,7 +136,7 @@ function Analysis() {
               <Image
                 width={60}
                 src={getIcon(tech_name)}
-                fallback="//static-cdn.wotgame.cn/static/5.100.1_cae685/wotp_static/img/tankopedia_new/frontend/scss/tankopedia-detail/img/tanks/default_heavy_icon.svg"
+                fallback={DEFAULT_ICON}
                 preview={false}
               />
               <span className={`tank-name ${premium ? 'premium' : ''}`}>{name}</span>

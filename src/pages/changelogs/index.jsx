@@ -1,5 +1,5 @@
 import { Typography, Divider } from 'antd';
-import './style.less';
+import './index.less';
 
 const { Title, Paragraph } = Typography;
 

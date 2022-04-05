@@ -4,6 +4,9 @@ import { useRequest, request } from 'umi';
 import moment from 'moment';
 import { Area } from '@ant-design/plots';
 import API from '@/api'
+import './index.less'
+
+const getBg = name => `//static-cdn.wotgame.cn/dcont/tankopedia_images/${name.toLowerCase()}/${name.toLowerCase()}_image.png`
 
 export default function HistoryModal(props) {
   const { visible, onClose, item } = props
@@ -56,7 +59,10 @@ export default function HistoryModal(props) {
       width={860}
     >
       <Spin spinning={loading}>
-        <Area {...config} />
+        <div className="bg-wrapper">
+          <div className="bg-img" style={{ backgroundImage: `url(${getBg(item.tech_name)})` }}/>
+          <Area {...config} />
+        </div>
       </Spin>
     </Modal>
   )
