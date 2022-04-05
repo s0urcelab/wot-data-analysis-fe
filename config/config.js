@@ -2,7 +2,9 @@
 import { defineConfig } from 'umi';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
+
 const { REACT_APP_ENV, API_PREFIX } = process.env;
+
 export default defineConfig({
   hash: true,
   antd: {
