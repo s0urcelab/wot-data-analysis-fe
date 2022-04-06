@@ -10,7 +10,7 @@ export default () => {
         {
           key: 'github',
           title: <GithubOutlined />,
-          href: 'https://github.com/s0urcelab',
+          href: 'https://github.com/wot-data-analysis',
           blankTarget: true,
         },
       ]}
