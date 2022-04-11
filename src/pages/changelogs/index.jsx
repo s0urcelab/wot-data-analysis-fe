@@ -12,9 +12,17 @@ function Changelogs() {
       <Title strong level={3}>2022-04-05</Title>
       <Paragraph className='changelog-p'>
         <ul>
-          <li>
-          🎉 击杀环标伤上线
-          </li>
+          <li>🎉 击杀环标伤查询上线</li>
+        </ul>
+      </Paragraph>
+      <Divider />
+
+      <Title strong level={3}>2022-04-12</Title>
+      <Paragraph className='changelog-p'>
+        <ul>
+          <li>🎉 新增排名变动情况</li>
+          <li>⚙ 调整收录坦克列表</li>
+          <li>⚙ 调整分页最大记录为100条</li>
         </ul>
       </Paragraph>
       <Divider />

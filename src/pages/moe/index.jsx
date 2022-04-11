@@ -1,6 +1,6 @@
 import { Suspense, useState } from 'react';
 import moment from 'moment';
-import Icon, { UndoOutlined } from '@ant-design/icons';
+import Icon, { UndoOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import { Tooltip, Image, Space, Button, Col, Card, Radio, Row } from 'antd';
 import { GridContent } from '@ant-design/pro-layout';
 import { Progress } from '@ant-design/plots';
@@ -41,6 +41,7 @@ function Analysis() {
     _id: -1,
     name: '-',
     tech_name: '',
+    tank_icon: '',
   })
 
   const openModal = (record) => {
@@ -94,12 +95,26 @@ function Analysis() {
   const columns = [
     {
       title: '排名',
-      dataIndex: 'seq',
-      render: (_, __, idx) => (page - 1) * size + (idx + 1),
+      dataIndex: 'rank',
+      width: '6%',
+      render: (rank, { rank_delta }) => (
+        <>
+          <span className='tank-rank'>{rank}</span>
+          {
+            !!rank_delta && (
+              <span className={`rank-delta ${rank_delta > 0 ? 'up' : 'down'}`}>
+                <ArrowDownOutlined style={{ fill: 'currentColor' }} />
+                {rank_delta}
+              </span>
+            )
+          }
+        </>
+      ),
     },
     {
       title: '国别',
       dataIndex: 'nation',
+      width: '5%',
       render: nation => (
         <img
           className='tank-nation'
@@ -112,11 +127,13 @@ function Analysis() {
     {
       title: '类型',
       dataIndex: 'type',
+      width: '5%',
       render: (type, { premium }) => <Icon component={TANK_TYPE[type]} style={{ color: premium ? '#fab81b' : '#999' }} />,
     },
     {
       title: '等级',
       dataIndex: 'tier',
+      width: '5%',
       render: (tier, { premium }) => (
         <span className={`tank-tier ${premium ? 'premium' : ''}`}>{String.fromCodePoint(tier + 8543)}</span>
       ),
@@ -125,6 +142,7 @@ function Analysis() {
     {
       title: '坦克名称',
       dataIndex: 'name',
+      width: '30%',
       render: (name, record) => {
         const { tech_name, premium } = record
         return (
@@ -162,6 +180,7 @@ function Analysis() {
       dataIndex: 'mastery_95',
       sorter: true,
       className: 'font-consolas',
+      defaultSortOrder: 'descend',
     },
   ];
 
@@ -303,12 +322,14 @@ function Analysis() {
         request={fetchTanks}
         columns={columns}
         pagination={{
+          defaultPageSize: 20,
           onChange: (page, size) => {
             setPage(page)
             setSize(size)
           },
-          pageSizeOptions: [10, 20, 40],
+          pageSizeOptions: [20, 40, 100],
         }}
+        sticky
       />
 
       <HistoryModal

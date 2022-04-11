@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
-import { Spin, Modal } from 'antd';
+import { Empty, Spin, Modal } from 'antd';
 import { useRequest, request } from 'umi';
 import moment from 'moment';
 import { Area } from '@ant-design/plots';
 import API from '@/api'
 import './index.less'
-
-const getBg = name => `//static-cdn.wotgame.cn/dcont/tankopedia_images/${name.toLowerCase()}/${name.toLowerCase()}_image.png`
 
 export default function HistoryModal(props) {
   const { visible, onClose, item } = props
@@ -59,10 +57,14 @@ export default function HistoryModal(props) {
       width={860}
     >
       <Spin spinning={loading}>
-        <div className="bg-wrapper">
-          <div className="bg-img" style={{ backgroundImage: `url(${getBg(item.tech_name)})` }}/>
-          <Area {...config} />
-        </div>
+        {
+          list.length ? (
+            <div className="bg-wrapper">
+              <div className="bg-img" style={{ backgroundImage: `url(${item.tank_icon})` }} />
+              <Area {...config} />
+            </div>
+          ) : <Empty />
+        }
       </Spin>
     </Modal>
   )
