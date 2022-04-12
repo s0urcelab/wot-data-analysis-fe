@@ -1,6 +1,6 @@
 import { Suspense, useState } from 'react';
 import moment from 'moment';
-import Icon, { UndoOutlined, ArrowDownOutlined } from '@ant-design/icons';
+import Icon, { UndoOutlined, ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import { Tooltip, Image, Space, Button, Col, Card, Radio, Row } from 'antd';
 import { GridContent } from '@ant-design/pro-layout';
 import { Progress } from '@ant-design/plots';
@@ -34,8 +34,8 @@ const NATION_CN = {
 
 function Analysis() {
   const [searchParams, setSearch] = useState({})
-  const [page, setPage] = useState(1)
-  const [size, setSize] = useState(20)
+  // const [page, setPage] = useState(1)
+  // const [size, setSize] = useState(20)
   const [isModalVisible, setVisible] = useState(false)
   const [selectedRecord, setRecord] = useState({
     _id: -1,
@@ -97,19 +97,22 @@ function Analysis() {
       title: '排名',
       dataIndex: 'rank',
       width: '6%',
-      render: (rank, { rank_delta }) => (
-        <>
-          <span className='tank-rank'>{rank}</span>
-          {
-            !!rank_delta && (
-              <span className={`rank-delta ${rank_delta > 0 ? 'up' : 'down'}`}>
-                <ArrowDownOutlined style={{ fill: 'currentColor' }} />
-                {rank_delta}
-              </span>
-            )
-          }
-        </>
-      ),
+      render: (rank, { rank_delta }) => {
+        const RankIcon = rank_delta > 0 ? ArrowUpOutlined : ArrowDownOutlined
+        return (
+          <>
+            <span className='tank-rank'>{rank}</span>
+            {
+              !!rank_delta && (
+                <span className={`rank-delta ${rank_delta > 0 ? 'up' : 'down'}`}>
+                  <RankIcon style={{ fill: 'currentColor' }} />
+                  {rank_delta}
+                </span>
+              )
+            }
+          </>
+        )
+      },
     },
     {
       title: '国别',
@@ -323,10 +326,10 @@ function Analysis() {
         columns={columns}
         pagination={{
           defaultPageSize: 20,
-          onChange: (page, size) => {
-            setPage(page)
-            setSize(size)
-          },
+          // onChange: (page, size) => {
+          //   setPage(page)
+          //   setSize(size)
+          // },
           pageSizeOptions: [20, 40, 100],
         }}
         sticky
