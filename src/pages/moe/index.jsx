@@ -99,6 +99,7 @@ function Analysis() {
       width: '6%',
       render: (rank, { rank_delta }) => {
         const RankIcon = rank_delta > 0 ? ArrowUpOutlined : ArrowDownOutlined
+        const delta = Math.abs(rank_delta)
         return (
           <>
             <span className='tank-rank'>{rank}</span>
@@ -106,7 +107,7 @@ function Analysis() {
               !!rank_delta && (
                 <span className={`rank-delta ${rank_delta > 0 ? 'up' : 'down'}`}>
                   <RankIcon style={{ fill: 'currentColor' }} />
-                  {rank_delta}
+                  {delta}
                 </span>
               )
             }
