@@ -1,7 +1,7 @@
 import { Badge } from 'antd';
 import { Link } from 'umi';
 
-const NOW_VERSION = 1
+const NOW_VERSION = 2
 
 const GlobalHeaderRight = () => {
   const isRead = JSON.parse(window.localStorage['WOT_CHANGELOG_VER'] || 0) === NOW_VERSION

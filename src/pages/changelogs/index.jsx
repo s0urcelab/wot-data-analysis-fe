@@ -26,6 +26,14 @@ function Changelogs() {
         </ul>
       </Paragraph>
       <Divider />
+
+      <Title strong level={3}>2022-04-15</Title>
+      <Paragraph className='changelog-p'>
+        <ul>
+          <li>🎉 盒子战斗力纯净版 插件上线</li>
+        </ul>
+      </Paragraph>
+      <Divider />
     </Typography>
   )
 }

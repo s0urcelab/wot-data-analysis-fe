@@ -43,6 +43,12 @@ export default defineConfig({
       component: './changelogs',
     },
     {
+      path: '/box-ce-mod',
+      name: 'box-ce-mod',
+      icon: 'tool',
+      component: './boxce',
+    },
+    {
       path: '/',
       redirect: '/marks-of-excellence',
     },
