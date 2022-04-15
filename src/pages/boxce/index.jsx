@@ -27,12 +27,12 @@ function BoxCE() {
       <Row justify="center">
         <Paragraph>
           注意：战力颜色显示需要修改资源文件，如果你没有使用任何坦克图标插件，请直接下载
-          <a href={MODS_ATLAS_DL}>预处理图标</a>
+          <a href={MODS_ATLAS_DL} target="_blank">预处理图标</a>
           配合使用。如果你使用了图标插件（<Text code>.wotmod</Text>），你需要提取图标插件中的
           <Text code>battleAtlas.dds</Text>、
           <Text code>battleAtlas.xml</Text>
           使用
-          <a href={TOOL}>处理工具</a>
+          <a href={TOOL} target="_blank">处理工具</a>
           生成新的资源文件并替换。
         </Paragraph>
       </Row>
