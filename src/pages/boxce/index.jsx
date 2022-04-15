@@ -15,6 +15,9 @@ function BoxCE() {
         <Title level={1}>🕹 盒子战斗力纯净版</Title>
       </Row>
       <Row justify="center">
+        <Title level={4}>当前版本：<Text code>1.16.1.0</Text></Title>
+      </Row>
+      <Row justify="center">
         <Paragraph className='boxce-p'>
           <ul>
             <li>无需安装盒子，放入<Text code>mods</Text>目录即可使用</li>
