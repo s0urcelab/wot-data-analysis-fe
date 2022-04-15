@@ -219,6 +219,7 @@ function Analysis() {
       </Suspense>
 
       <ProTable
+        style={{ minWidth: '800px' }}
         tableExtraRender={() => (
           <Card>
             <Space direction="vertical">
@@ -327,10 +328,6 @@ function Analysis() {
         columns={columns}
         pagination={{
           defaultPageSize: 20,
-          // onChange: (page, size) => {
-          //   setPage(page)
-          //   setSize(size)
-          // },
           pageSizeOptions: [20, 40, 100],
         }}
         sticky
