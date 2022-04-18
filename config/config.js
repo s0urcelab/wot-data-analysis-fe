@@ -49,6 +49,12 @@ export default defineConfig({
       component: './boxce',
     },
     {
+      path: '/tank-atlas',
+      name: 'tank-atlas',
+      icon: 'experiment',
+      component: './tankatlas',
+    },
+    {
       path: '/',
       redirect: '/marks-of-excellence',
     },

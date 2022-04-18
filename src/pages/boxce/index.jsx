@@ -1,5 +1,5 @@
-import { Button, Space, Divider, Badge, Row, Col, Typography, Image } from 'antd';
-import { DownloadOutlined, ToolOutlined } from '@ant-design/icons';
+import { Alert, Button, Space, Divider, Badge, Row, Col, Typography, Image } from 'antd';
+import { CloudDownloadOutlined, ToolOutlined } from '@ant-design/icons';
 import './index.less';
 
 const { Title, Paragraph, Text } = Typography;
@@ -9,6 +9,16 @@ const MODS_DL = '//home.src.moe:8000/download/s0urce.box.combat.eff_1.16.1.0.wot
 const MODS_ATLAS_DL = '//home.src.moe:8000/download/s0urce.box.combat.eff.atlas_1.16.1.0.wotmod'
 
 function BoxCE() {
+  const warning = (
+    <div>战力颜色显示需要修改资源文件，如果你没有使用任何坦克图标插件，请直接下载
+      <a href={MODS_ATLAS_DL} target="_blank">预处理图标</a>
+      配合使用。如果你使用了图标插件（<Text code>.wotmod</Text>），你需要提取图标插件中的
+      <Text code>battleAtlas.dds</Text>、
+      <Text code>battleAtlas.xml</Text>
+      使用
+      <a href={TOOL} target="_blank">处理工具</a>
+      生成新的资源文件并替换。</div>
+  )
   return (
     <>
       <Row justify="center" style={{ margin: '40px 0' }}>
@@ -27,23 +37,18 @@ function BoxCE() {
           </ul>
         </Paragraph>
       </Row>
-      <Row justify="center">
-        <Paragraph>
-          注意：战力颜色显示需要修改资源文件，如果你没有使用任何坦克图标插件，请直接下载
-          <a href={MODS_ATLAS_DL} target="_blank">预处理图标</a>
-          配合使用。如果你使用了图标插件（<Text code>.wotmod</Text>），你需要提取图标插件中的
-          <Text code>battleAtlas.dds</Text>、
-          <Text code>battleAtlas.xml</Text>
-          使用
-          <a href={TOOL} target="_blank">处理工具</a>
-          生成新的资源文件并替换。
-        </Paragraph>
+      <Row justify="center" style={{ marginBottom: '30px' }}>
+        <Alert
+          type="warning"
+          showIcon
+          message={warning}
+        />
       </Row>
       <Row justify="center">
         <Space size={20}>
           <Button
             type="primary"
-            icon={<DownloadOutlined />}
+            icon={<CloudDownloadOutlined />}
             size="large"
             onClick={() => window.open(MODS_DL)}
           >
@@ -51,7 +56,7 @@ function BoxCE() {
           </Button>
           <Button
             type="primary"
-            icon={<DownloadOutlined />}
+            icon={<CloudDownloadOutlined />}
             size="large"
             onClick={() => window.open(MODS_ATLAS_DL)}
           >

@@ -34,6 +34,14 @@ function Changelogs() {
         </ul>
       </Paragraph>
       <Divider />
+
+      <Title strong level={3}>2022-04-18</Title>
+      <Paragraph className='changelog-p'>
+        <ul>
+          <li>🎉 Athena图标重制版 上线</li>
+        </ul>
+      </Paragraph>
+      <Divider />
     </Typography>
   )
 }
