@@ -213,7 +213,7 @@ function Analysis() {
             </ChartCard>
           </Col>
           <Col>
-            <img src="/kv5.png" alt="" style={{ maxHeight: '180px' }} />
+            <img src="/kv5.webp" alt="" style={{ maxHeight: '180px' }} />
           </Col>
         </Row>
       </Suspense>

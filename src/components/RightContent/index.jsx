@@ -34,7 +34,7 @@ const GlobalHeaderRight = () => {
         footer={null}
       >
         <Image
-          src="/qrcode.png"
+          src="/qrcode.webp"
           preview={false}
         />
       </Modal>

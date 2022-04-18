@@ -81,19 +81,19 @@ function BoxCE() {
         <Col>
           <Image
             width={260}
-            src="/screenshot_1.png"
+            src="/screenshot_1.webp"
           />
         </Col>
         <Col>
           <Image
             width={300}
-            src="/screenshot_2.png"
+            src="/screenshot_2.webp"
           />
         </Col>
         <Col>
           <Image
             width={120}
-            src="/screenshot_3.png"
+            src="/screenshot_3.webp"
           />
         </Col>
       </Row>

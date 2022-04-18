@@ -49,10 +49,10 @@ export default defineConfig({
       component: './boxce',
     },
     {
-      path: '/tank-atlas',
-      name: 'tank-atlas',
+      path: '/athena',
+      name: 'athena',
       icon: 'experiment',
-      component: './tankatlas',
+      component: './athena',
     },
     {
       path: '/',
