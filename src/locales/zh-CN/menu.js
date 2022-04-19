@@ -1,6 +1,7 @@
 export default {
   'menu.moe': '击杀环标伤',
   'menu.changelogs': '更新日志',
+  'menu.message': '留言板',
   'menu.box-ce-mod': '盒子战斗力纯净版',
   'menu.athena': 'Athena图标重制版',
   'menu.exception.403': '403',

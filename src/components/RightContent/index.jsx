@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Image, Modal, Button, Space, Badge } from 'antd';
 import { Link } from 'umi';
 
-const NOW_VERSION = 3
+const NOW_VERSION = 4
 
 const GlobalHeaderRight = () => {
   const isRead = JSON.parse(window.localStorage['WOT_CHANGELOG_VER'] || 0) === NOW_VERSION
@@ -14,6 +14,7 @@ const GlobalHeaderRight = () => {
 
   return (
     <Space>
+      <Link to="/message">留言板</Link>
       <Button
         type="link"
         onClick={() => setIsModalVisible(true)}

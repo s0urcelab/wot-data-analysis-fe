@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Empty, Spin, Modal } from 'antd';
-import { useRequest, request } from 'umi';
+import { useRequest } from 'umi';
 import moment from 'moment';
 import { Area } from '@ant-design/plots';
 import API from '@/api'
@@ -17,7 +17,7 @@ export default function HistoryModal(props) {
     loading,
     run,
     data = {},
-  } = useRequest(() => request(API('/history'), {
+  } = useRequest(() => API('/history', {
     method: 'GET',
     params: { id: item._id },
   }), {

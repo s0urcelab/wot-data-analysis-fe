@@ -5,7 +5,7 @@ import { Tooltip, Image, Space, Button, Col, Card, Radio, Row } from 'antd';
 import { GridContent } from '@ant-design/pro-layout';
 import { Progress } from '@ant-design/plots';
 import ProTable from '@ant-design/pro-table';
-import { request, useRequest } from 'umi';
+import { useRequest } from 'umi';
 import API from '@/api'
 import PageLoading from './components/PageLoading';
 import { ChartCard, Field } from './components/Charts';
@@ -56,7 +56,7 @@ function Analysis() {
   const fetchTanks = async (params, sort) => {
     const isSort = !!Object.keys(sort).length
 
-    const { errCode, data } = await request(API('/tankList'), {
+    const { errCode, data } = await API('/tankList', {
       method: 'GET',
       params: {
         page: params.current,
@@ -90,7 +90,9 @@ function Analysis() {
       tiers: [],
       types: [],
     },
-  } = useRequest(API('/preData'));
+  } = useRequest(() => API('/preData', {
+    method: 'GET',
+  }));
 
   const columns = [
     {

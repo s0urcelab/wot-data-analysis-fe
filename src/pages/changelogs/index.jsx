@@ -42,6 +42,14 @@ function Changelogs() {
         </ul>
       </Paragraph>
       <Divider />
+
+      <Title strong level={3}>2022-04-20</Title>
+      <Paragraph className='changelog-p'>
+        <ul>
+          <li>🎉 新增留言板</li>
+        </ul>
+      </Paragraph>
+      <Divider />
     </Typography>
   )
 }

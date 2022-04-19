@@ -43,6 +43,12 @@ export default defineConfig({
       component: './changelogs',
     },
     {
+      path: '/message',
+      name: 'message',
+      hideInMenu: true,
+      component: './msg',
+    },
+    {
       path: '/box-ce-mod',
       name: 'box-ce-mod',
       icon: 'tool',
