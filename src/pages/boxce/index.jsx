@@ -4,7 +4,7 @@ import './index.less';
 
 const { Title, Paragraph, Text } = Typography;
 
-const TOOL = '//home.src.moe:8000/modifier/'
+const TOOL = 'https://wot-badges-modifier-server.src.moe/'
 const MODS_DL = '//home.src.moe:8000/download/s0urce.box.combat.eff_1.16.1.1.wotmod'
 const MODS_ATLAS_DL = '//home.src.moe:8000/download/s0urce.box.combat.eff.atlas_1.16.1.1.wotmod'
 
