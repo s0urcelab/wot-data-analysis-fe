@@ -4,8 +4,8 @@ import './index.less';
 
 const { Title, Text } = Typography;
 
-const ATLAS_DL = '//home.src.moe:8000/download/Athena%E5%9B%BE%E6%A0%87%E9%87%8D%E5%88%B6%E7%89%88/athena.icon.remake.big.1.16.1.0.wotmod'
-const ATLAS_MIRROR_DL = '//home.src.moe:8000/download/Athena%E5%9B%BE%E6%A0%87%E9%87%8D%E5%88%B6%E7%89%88/AntiMirror_battle.1.16.1.0.wotmod'
+const ATLAS_DL = '//home.src.moe:8000/download/Athena%E5%9B%BE%E6%A0%87%E9%87%8D%E5%88%B6%E7%89%88/athena.icon.remake.big.1.16.1.1.wotmod'
+const ATLAS_MIRROR_DL = '//home.src.moe:8000/download/Athena%E5%9B%BE%E6%A0%87%E9%87%8D%E5%88%B6%E7%89%88/AntiMirror_battle.1.16.1.1.wotmod'
 const ATLAS_WITH_BOX_CE_DL = '//home.src.moe:8000/download/Athena%E5%9B%BE%E6%A0%87%E9%87%8D%E5%88%B6%E7%89%88/athena.icon.with.box-ce.wotmod'
 
 function AthenaAtlas() {
@@ -15,7 +15,7 @@ function AthenaAtlas() {
         <Title level={1}>🌈 Athena图标重制版</Title>
       </Row>
       <Row justify="center">
-        <Title level={4}>当前版本：<Text code>1.16.1.0</Text></Title>
+        <Title level={4}>当前版本：<Text code>1.16.1.1</Text></Title>
       </Row>
       <Row justify="center" style={{ marginBottom: '14px' }}>
         <Alert
