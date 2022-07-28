@@ -198,7 +198,7 @@ function Analysis() {
             <ChartCard
               bordered={false}
               loading={loading}
-              title={<span style={{ fontWeight: 'bold' }}>已收录 / 击杀环坦克</span>}
+              title={<span style={{ fontWeight: 'bold' }}>击杀环坦克 / 已收录</span>}
               total={`${data.hasMastery} / ${data.total}`}
               footer={(
                 <Field label="最后更新日期" value={moment(data.lastUpdate).format('YYYY-MM-DD HH:mm:ss')} />
