@@ -4,7 +4,7 @@ import './index.less';
 
 const { Title, Paragraph, Text } = Typography;
 
-const TOOL = 'https://wot-badges-modifier-server.src.moe/'
+const TOOL = '//home.src.moe:8000/modifier/'
 const MODS_DL = '//home.src.moe:8000/download/s0urce.box.combat.eff.wotmod'
 const MODS_ATLAS_DL = '//home.src.moe:8000/download/s0urce.box.combat.eff.atlas.wotmod'
 
@@ -25,7 +25,7 @@ function BoxCE() {
         <Title level={1}>🕹 盒子战斗力纯净版</Title>
       </Row>
       <Row justify="center">
-        <Title level={4}>当前版本：<Text code>1.17.1.1</Text></Title>
+        <Title level={4}>当前版本：<Text code>1.17.1.3</Text></Title>
       </Row>
       <Row justify="center">
         <Paragraph className='boxce-p'>
