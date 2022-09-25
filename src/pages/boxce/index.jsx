@@ -25,7 +25,7 @@ function BoxCE() {
         <Title level={1}>🕹 盒子战斗力纯净版</Title>
       </Row>
       <Row justify="center">
-        <Title level={4}>当前版本：<Text code>1.18.0.0</Text></Title>
+        <Title level={4}>当前版本：<Text code>1.18.0.2</Text></Title>
       </Row>
       <Row justify="center">
         <Paragraph className='boxce-p'>
