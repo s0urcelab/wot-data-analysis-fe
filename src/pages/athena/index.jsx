@@ -15,7 +15,7 @@ function AthenaAtlas() {
         <Title level={1}>🌈 Athena图标重制版</Title>
       </Row>
       <Row justify="center">
-        <Title level={4}>当前版本：<Text code>1.18.0.2</Text></Title>
+        <Title level={4}>当前版本：<Text code>1.18.1.0</Text></Title>
       </Row>
       <Row justify="center" style={{ marginBottom: '14px' }}>
         <Alert
