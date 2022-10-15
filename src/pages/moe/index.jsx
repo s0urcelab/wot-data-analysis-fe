@@ -150,7 +150,7 @@ function Analysis() {
       dataIndex: 'name',
       width: '30%',
       render: (name, record) => {
-        const { tech_name, premium } = record
+        const { tech_name = '', premium } = record
         return (
           <div
             style={{ cursor: "pointer" }}
@@ -159,7 +159,7 @@ function Analysis() {
             <Tooltip title="点击查看历史数据">
               <Image
                 width={60}
-                src={getIcon(tech_name)}
+                src={getIcon(tech_name || '')}
                 fallback={DEFAULT_ICON}
                 preview={false}
               />
