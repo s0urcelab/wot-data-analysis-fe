@@ -1,23 +1,22 @@
+import { Suspense, useState } from 'react';
 import { Alert, Button, Space, Divider, Badge, Row, Col, Typography, Image } from 'antd';
 import { CloudDownloadOutlined, ToolOutlined } from '@ant-design/icons';
+import ToolModal from './components/ToolModal';
 import './index.less';
 
 const { Title, Paragraph, Text } = Typography;
 
-const TOOL = '//home.src.moe:8000/modifier/'
 const MODS_DL = '//home.src.moe:8000/download/s0urce.box.combat.eff.wotmod'
 const MODS_ATLAS_DL = '//home.src.moe:8000/download/s0urce.box.combat.eff.atlas.wotmod'
 
 function BoxCE() {
+  const [isModalVisible, setVisible] = useState(false)
+
   const warning = (
     <div>战力颜色显示需要修改资源文件，如果你没有使用任何坦克图标插件，请直接下载
       <a href={MODS_ATLAS_DL} target="_blank">预处理图标</a>
-      配合使用。如果你使用了图标插件（<Text code>.wotmod</Text>），你需要提取图标插件中的
-      <Text code>battleAtlas.dds</Text>、
-      <Text code>battleAtlas.xml</Text>
-      使用
-      <a href={TOOL} target="_blank">处理工具</a>
-      生成新的资源文件并替换。</div>
+      配合使用。如果你使用了某款图标插件，你需要使用本站提供的<a onClick={() => setVisible(true)}>处理工具</a>。
+    </div>
   )
   return (
     <>
@@ -25,7 +24,7 @@ function BoxCE() {
         <Title level={1}>🕹 盒子战斗力纯净版</Title>
       </Row>
       <Row justify="center">
-        <Title level={4}>当前版本：<Text code>1.18.1.0</Text></Title>
+        <Title level={4}>当前版本：<Text code>{CURR_VERSION}</Text></Title>
       </Row>
       <Row justify="center">
         <Paragraph className='boxce-p'>
@@ -66,7 +65,7 @@ function BoxCE() {
             // type="primary"
             icon={<ToolOutlined />}
             size="large"
-            onClick={() => window.open(TOOL)}
+            onClick={() => setVisible(true)}
           >
             处理工具
           </Button>
@@ -108,6 +107,12 @@ function BoxCE() {
           <Badge color="rgb(255, 215, 0)" text="> 1200" />
         </Space>
       </Row>
+
+      <ToolModal
+        key={isModalVisible}
+        visible={isModalVisible}
+        onClose={() => setVisible(false)}
+      />
     </>
   )
 }

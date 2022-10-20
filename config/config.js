@@ -3,7 +3,7 @@ import { defineConfig } from 'umi';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 
-const { REACT_APP_ENV, API_PREFIX } = process.env;
+const { REACT_APP_ENV, API_PREFIX, CURR_VERSION } = process.env;
 
 export default defineConfig({
   hash: true,
@@ -91,6 +91,7 @@ export default defineConfig({
   exportStatic: {},
   define: {
     API_PREFIX: API_PREFIX || '',
+    CURR_VERSION: CURR_VERSION || '未知',
   },
   // analyze: {
   //   analyzerMode: 'server',

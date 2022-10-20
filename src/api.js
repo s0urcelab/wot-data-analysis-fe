@@ -1,8 +1,8 @@
 import { request } from 'umi';
-import Cookies from 'js-cookie'
+
+const prefix = REACT_APP_ENV === 'dev' ? '/api' : API_PREFIX
 
 export default (path, opt) => {
-  const prefix = REACT_APP_ENV === 'dev' ? '/api' : API_PREFIX
   const { headers: h, ...rest } = opt
   const headers = {
     ...h,
@@ -10,3 +10,5 @@ export default (path, opt) => {
   }
   return request(`${prefix}${path}`, { headers, ...rest })
 }
+
+export const api = path => `${prefix}${path}`
