@@ -91,7 +91,7 @@ function AddComment({ to, at, success }) {
 
   return (
     <Comment
-      avatar={`https://joeschmoe.io/api/v1/${ava || 'random'}`}
+      avatar={`https://api.dicebear.com/5.x/bottts-neutral/svg?seed=${ava || Math.random()}`}
       content={
         <Editor
           onNameChange={name => setAva(name.trim())}

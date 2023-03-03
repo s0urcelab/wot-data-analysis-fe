@@ -82,7 +82,7 @@ function MessageBoard() {
       </>
 
     ),
-    avatar: item.avatar,
+    avatar: item.author_type ? `https://blog.src.moe/img/avatar.jpg` : `https://api.dicebear.com/5.x/bottts-neutral/svg?seed=${item.author}`,
     content: (
       <p>
         {
