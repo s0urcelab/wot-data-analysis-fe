@@ -50,6 +50,14 @@ function Changelogs() {
         </ul>
       </Paragraph>
       <Divider />
+
+      <Title strong level={3}>2023-06-05</Title>
+      <Paragraph className='changelog-p'>
+        <ul>
+          <li>🎉 留言板迁移至twikoo评论系统</li>
+        </ul>
+      </Paragraph>
+      <Divider />
     </Typography>
   )
 }
