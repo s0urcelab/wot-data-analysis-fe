@@ -4,9 +4,10 @@ import './index.less';
 
 const { Title, Text } = Typography;
 
-const ATLAS_DL = '//home.src.moe:8000/download/Athena%E5%9B%BE%E6%A0%87%E9%87%8D%E5%88%B6%E7%89%88/athena.icon.remake.big.wotmod'
-const ATLAS_MIRROR_DL = '//home.src.moe:8000/download/Athena%E5%9B%BE%E6%A0%87%E9%87%8D%E5%88%B6%E7%89%88/AntiMirror_battle.wotmod'
-const ATLAS_WITH_BOX_CE_DL = '//home.src.moe:8000/download/Athena%E5%9B%BE%E6%A0%87%E9%87%8D%E5%88%B6%E7%89%88/athena.icon.with.box-ce.wotmod'
+const DL_HOST = '//dl.src.moe:8000';
+const ATLAS_DL = `${DL_HOST}/AthenaIcon/athena.icon.remake.big.wotmod`;
+const ATLAS_MIRROR_DL = `${DL_HOST}/AthenaIcon/AntiMirror_battle.wotmod`;
+const ATLAS_WITH_BOX_CE_DL = `${DL_HOST}/AthenaIcon/athena.icon.with.box-ce.wotmod`;
 
 function AthenaAtlas() {
   return (
@@ -15,14 +16,12 @@ function AthenaAtlas() {
         <Title level={1}>🌈 Athena图标重制版</Title>
       </Row>
       <Row justify="center">
-        <Title level={4}>当前版本：<Text code>{CURR_VERSION}</Text></Title>
+        <Title level={4}>
+          当前版本：<Text code>{CURR_VERSION}</Text>
+        </Title>
       </Row>
       <Row justify="center" style={{ marginBottom: '14px' }}>
-        <Alert
-          type="warning"
-          showIcon
-          message="xvm用户不需要下载反向插件"
-        />
+        <Alert type="warning" showIcon message="xvm用户不需要下载反向插件" />
       </Row>
       <Row justify="center">
         <Space size={20}>
@@ -53,20 +52,13 @@ function AthenaAtlas() {
         </Space>
       </Row>
       <Divider />
-      <Row
-        justify="center"
-        gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
-        align="middle"
-      >
+      <Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} align="middle">
         <Col>
-          <Image
-            width={260}
-            src="/atlas.webp"
-          />
+          <Image width={260} src="/atlas.webp" />
         </Col>
       </Row>
     </>
-  )
+  );
 }
 
 export default AthenaAtlas;
