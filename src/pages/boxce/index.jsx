@@ -74,6 +74,7 @@ function BoxCE() {
           >
             处理工具
           </Button>
+          <Alert message="插件QQ群：927946470" type="success" />
         </Space>
       </Row>
       <Divider />

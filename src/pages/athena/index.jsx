@@ -49,6 +49,7 @@ function AthenaAtlas() {
           >
             下载图标（适配本站盒子战斗力纯净版）
           </Button>
+          <Alert message="插件QQ群：927946470" type="success" />
         </Space>
       </Row>
       <Divider />
