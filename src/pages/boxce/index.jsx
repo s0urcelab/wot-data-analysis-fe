@@ -80,13 +80,13 @@ function BoxCE() {
       <Divider />
       <Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} align="middle">
         <Col>
-          <Image width={260} src="/screenshot_1.webp" />
+          <Image width={260} src={require('./screenshot_1.webp')} />
         </Col>
         <Col>
-          <Image width={300} src="/screenshot_2.webp" />
+          <Image width={300} src={require('./screenshot_2.webp')} />
         </Col>
         <Col>
-          <Image width={120} src="/screenshot_3.webp" />
+          <Image width={120} src={require('./screenshot_3.webp')} />
         </Col>
       </Row>
 

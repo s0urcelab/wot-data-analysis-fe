@@ -55,7 +55,7 @@ function AthenaAtlas() {
       <Divider />
       <Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} align="middle">
         <Col>
-          <Image width={260} src="/atlas.webp" />
+          <Image width={260} src={require('./atlas.webp')} />
         </Col>
       </Row>
     </>
