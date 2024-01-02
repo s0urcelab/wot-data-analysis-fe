@@ -70,6 +70,18 @@ function Changelogs() {
         </ul>
       </Paragraph>
       <Divider />
+
+      <Title strong level={3}>
+        2024-01-02
+      </Title>
+      <Paragraph className="changelog-p">
+        <ul>
+          <li>🎉 新增绑定玩家功能</li>
+          <li>🎉 展示玩家基础信息</li>
+          <li>🎉 展示玩家已拥有击杀环 & M章</li>
+        </ul>
+      </Paragraph>
+      <Divider />
     </Typography>
   );
 }
