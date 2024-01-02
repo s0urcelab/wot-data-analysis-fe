@@ -10,11 +10,53 @@ function Changelogs() {
       <Divider />
 
       <Title strong level={3}>
-        2022-04-05
+        2024-01-02
       </Title>
       <Paragraph className="changelog-p">
         <ul>
-          <li>🎉 击杀环标伤查询上线</li>
+          <li>🎉 新增绑定玩家功能</li>
+          <li>🎉 展示玩家基础信息</li>
+          <li>🎉 展示玩家已拥有击杀环 & M章</li>
+        </ul>
+      </Paragraph>
+      <Divider />
+
+      <Title strong level={3}>
+        2023-06-05
+      </Title>
+      <Paragraph className="changelog-p">
+        <ul>
+          <li>🎉 留言板迁移至 Artalk 评论系统</li>
+        </ul>
+      </Paragraph>
+      <Divider />
+
+      <Title strong level={3}>
+        2022-04-20
+      </Title>
+      <Paragraph className="changelog-p">
+        <ul>
+          <li>🎉 新增留言板</li>
+        </ul>
+      </Paragraph>
+      <Divider />
+
+      <Title strong level={3}>
+        2022-04-18
+      </Title>
+      <Paragraph className="changelog-p">
+        <ul>
+          <li>🎉 Athena图标重制版 上线</li>
+        </ul>
+      </Paragraph>
+      <Divider />
+
+      <Title strong level={3}>
+        2022-04-15
+      </Title>
+      <Paragraph className="changelog-p">
+        <ul>
+          <li>🎉 盒子战斗力纯净版 插件上线</li>
         </ul>
       </Paragraph>
       <Divider />
@@ -32,53 +74,11 @@ function Changelogs() {
       <Divider />
 
       <Title strong level={3}>
-        2022-04-15
+        2022-04-05
       </Title>
       <Paragraph className="changelog-p">
         <ul>
-          <li>🎉 盒子战斗力纯净版 插件上线</li>
-        </ul>
-      </Paragraph>
-      <Divider />
-
-      <Title strong level={3}>
-        2022-04-18
-      </Title>
-      <Paragraph className="changelog-p">
-        <ul>
-          <li>🎉 Athena图标重制版 上线</li>
-        </ul>
-      </Paragraph>
-      <Divider />
-
-      <Title strong level={3}>
-        2022-04-20
-      </Title>
-      <Paragraph className="changelog-p">
-        <ul>
-          <li>🎉 新增留言板</li>
-        </ul>
-      </Paragraph>
-      <Divider />
-
-      <Title strong level={3}>
-        2023-06-05
-      </Title>
-      <Paragraph className="changelog-p">
-        <ul>
-          <li>🎉 留言板迁移至 Artalk 评论系统</li>
-        </ul>
-      </Paragraph>
-      <Divider />
-
-      <Title strong level={3}>
-        2024-01-02
-      </Title>
-      <Paragraph className="changelog-p">
-        <ul>
-          <li>🎉 新增绑定玩家功能</li>
-          <li>🎉 展示玩家基础信息</li>
-          <li>🎉 展示玩家已拥有击杀环 & M章</li>
+          <li>🎉 击杀环标伤查询上线</li>
         </ul>
       </Paragraph>
       <Divider />
