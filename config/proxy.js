@@ -7,15 +7,15 @@
  * https://pro.ant.design/docs/deploy
  */
 export default {
-  // /api
-  dev: {
-    '/api/': {
-      // target: 'http://localhost:7001/',
-      target: 'https://home.src.moe:8000/wot',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/api': '',
-      },
+    // /api
+    dev: {
+        '/api/': {
+            // target: 'http://localhost:7001/',
+            target: 'https://wds.src.moe:8000',
+            changeOrigin: true,
+            pathRewrite: {
+                '^/api': '',
+            },
+        },
     },
-  },
 };
