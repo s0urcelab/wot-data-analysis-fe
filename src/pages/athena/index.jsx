@@ -11,7 +11,6 @@ function AthenaAtlas() {
     const latestVersion = useLatestVersion();
     const ATLAS_DL = `${DL_HOST}/wot/${latestVersion}/athena.icon.remake.big.wotmod`;
     const ATLAS_MIRROR_DL = `${DL_HOST}/wot/${latestVersion}/AntiMirror_battle.wotmod`;
-    const ATLAS_WITH_BOX_CE_DL = `${DL_HOST}/wot/${latestVersion}/athena.icon.with.box-ce.wotmod`;
 
     return (
         <>
@@ -37,20 +36,11 @@ function AthenaAtlas() {
                         下载图标
                     </Button>
                     <Button
-                        type="primary"
                         icon={<DownloadOutlined />}
                         size="large"
                         onClick={() => window.open(ATLAS_MIRROR_DL)}
                     >
                         下载图标反向插件
-                    </Button>
-                    <Button
-                        // type="primary"
-                        icon={<DownloadOutlined />}
-                        size="large"
-                        onClick={() => window.open(ATLAS_WITH_BOX_CE_DL)}
-                    >
-                        下载图标（适配本站盒子战斗力纯净版）
                     </Button>
                     <Alert message="插件QQ群：927946470" type="success" />
                 </Space>

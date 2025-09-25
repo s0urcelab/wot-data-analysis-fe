@@ -1,5 +1,5 @@
 import { Suspense, useState } from 'react';
-import { Alert, Button, Space, Divider, Badge, Row, Col, Typography, Image } from 'antd';
+import { Alert, Button, Space, Divider, Badge, Row, Col, Typography, Image, Dropdown } from 'antd';
 import { CloudDownloadOutlined, ToolOutlined } from '@ant-design/icons';
 import useLatestVersion from '@/hooks/useLatestVersion';
 import ToolModal from './components/ToolModal';
@@ -14,17 +14,31 @@ function BoxCE() {
     const latestVersion = useLatestVersion();
     const MODS_DL = `${DL_HOST}/wot/${latestVersion}/s0urce.box.combat.eff.wotmod`;
     const MODS_ATLAS_DL = `${DL_HOST}/wot/${latestVersion}/s0urce.box.combat.eff.atlas.wotmod`;
+    const ATLAS_WITH_BOX_CE_DL = `${DL_HOST}/wot/${latestVersion}/athena.icon.with.box-ce.wotmod`;
+    const ATLAS_MIRROR_DL = `${DL_HOST}/wot/${latestVersion}/AntiMirror_battle.wotmod`;
 
     const warning = (
         <div>
-            战力颜色显示需要修改资源文件，如果你没有使用任何坦克图标插件，请直接下载
+            战力颜色显示需要修改资源文件，如果你不使用任何坦克图标插件，请下载{' '}
             <a href={MODS_ATLAS_DL} target="_blank" rel="noreferrer">
-                预处理图标
+                原版图标
             </a>
-            配合使用。如果你使用了某款图标插件，你需要使用本站提供的
-            <a onClick={() => setVisible(true)}>处理工具</a>。
+            ；<br />
+            如果你使用本站的Athena图标，请下载{' '}
+            <a href={ATLAS_WITH_BOX_CE_DL} target="_blank" rel="noreferrer">
+                Athena图标
+            </a>
+            ；<br />
+            如果你使用其他图标插件，你需要使用本站提供的{' '}
+            <a onClick={() => setVisible(true)}>处理工具</a>。<br />
+            如果你的图标翻转了，请下载{' '}
+            <a href={ATLAS_MIRROR_DL} target="_blank" rel="noreferrer">
+                图标反向插件
+            </a>
+            。
         </div>
     );
+
     return (
         <>
             <Row justify="center" style={{ margin: '40px 0' }}>
@@ -60,14 +74,22 @@ function BoxCE() {
                     >
                         下载插件
                     </Button>
-                    <Button
+                    <Dropdown.Button
                         type="primary"
-                        icon={<CloudDownloadOutlined />}
                         size="large"
                         onClick={() => window.open(MODS_ATLAS_DL)}
+                        menu={{
+                            items: [
+                                {
+                                    key: 'athena',
+                                    label: '下载 Athena图标',
+                                },
+                            ],
+                            onClick: () => window.open(ATLAS_WITH_BOX_CE_DL),
+                        }}
                     >
-                        下载预处理图标
-                    </Button>
+                        下载 原版图标
+                    </Dropdown.Button>
                     <Button
                         // type="primary"
                         icon={<ToolOutlined />}
@@ -95,11 +117,13 @@ function BoxCE() {
             <Row justify="center" align="middle">
                 <Divider>战斗力颜色说明</Divider>
                 <Space direction="vertical">
-                    <Badge color="rgb(241, 0, 0)" text="0 ~ 600" />
+                    <Badge color="rgb(241, 0, 0)" text="0 ~ 300（显示为BOT）" />
+                    <Badge color="rgb(241, 0, 0)" text="300 ~ 600" />
                     <Badge color="rgb(0, 193, 0)" text="600 ~ 800" />
                     <Badge color="rgb(102, 170, 255)" text="800 ~ 1000" />
                     <Badge color="rgb(204, 68, 255)" text="1000 ~ 1200" />
-                    <Badge color="rgb(255, 215, 0)" text="> 1200" />
+                    <Badge color="rgb(255, 215, 0)" text="1200 ~ 1500" />
+                    <Badge color="rgb(255, 215, 0)" text="> 1500（显示为王冠）" />
                 </Space>
             </Row>
 

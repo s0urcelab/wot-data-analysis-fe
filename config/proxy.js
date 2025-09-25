@@ -10,7 +10,7 @@ export default {
     // /api
     dev: {
         '/api/': {
-            // target: 'http://localhost:7001/',
+            // target: 'http://localhost:5000/',
             target: 'https://wds.src.moe:8000',
             changeOrigin: true,
             pathRewrite: {
